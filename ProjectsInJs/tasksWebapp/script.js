@@ -12,9 +12,17 @@ TaskList.forEach(element => {
 
 
 // grab text when todoInput is pressed.
-taskButton.addEventListener("click", () => {
-    textGivenByUser = todoInput.value.trim()
-    if(textGivenByUser === "") return;
+// Assuming taskButton and todoInput are already defined
+taskButton.addEventListener('click', handleTaskAddition);
+todoInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        handleTaskAddition();
+    }
+});
+
+function handleTaskAddition() {
+    const textGivenByUser = todoInput.value.trim();
+    if (textGivenByUser === "") return;
 
     const DataToPush_toTasklist = {
         UID: Date.now(),
@@ -22,13 +30,12 @@ taskButton.addEventListener("click", () => {
         TaskCompletedStatus: false,
     };
 
-    TaskList.push(DataToPush_toTasklist)    
-    todoInput.value = ""
-    pushData_toLocal()
-    rendertask(DataToPush_toTasklist)
-    console.log(TaskList)
-})
-
+    TaskList.push(DataToPush_toTasklist);
+    todoInput.value = "";
+    pushData_toLocal();
+    rendertask(DataToPush_toTasklist);
+    console.log(TaskList);
+}
 function rendertask(datatorender){
     const li = document.createElement('li');
     //basically setting up some identification for this const.
