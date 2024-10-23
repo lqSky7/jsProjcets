@@ -37,7 +37,21 @@ function rendertask(datatorender){
     <button>Delete</button>`
     todoList.append(li)
 
-    
+    // reverses the task completion status.
+    li.addEventListener('click', (e) => {
+        if(e.target.tagName === "BUTTON") return
+        datatorender.TaskCompletedStatus = !datatorender.TaskCompletedStatus
+        li.classList.toggle("completed") //toggling css class toggle.. which render strikethrough line...
+        pushData_toLocal()
+    })
+
+    // delete events
+    li.addEventListener('click', (e) => {
+        e.stopPropagation() // stop bubbling
+        TaskList = TaskList.filter(k => k.UID !== datatorender.UID)
+        li.remove()
+        pushData_toLocal()
+    })
 }
 
     // function to push data to local storage.
