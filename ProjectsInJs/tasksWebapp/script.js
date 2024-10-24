@@ -1,70 +1,92 @@
-document.addEventListener('DOMContentLoaded', () => {
-const taskButton = document.getElementById("add-task-btn");
-const todoList = document.getElementById("todo-list");
-const todoInput = document.getElementById("todo-input");
+document.addEventListener('DOMContentLoaded',() => {
+    const todoInput = document.getElementById("todo-input");
+    const addTaskButton = document.getElementById("add-task-btn");
+    const todoList = document.getElementById("todo-list");
+    let ListArray = JSON.parse(localStorage.getItem("localstoragekey")) || []
+    ListArray.forEach(element => {
+        render(element)
+    }); 
 
-// we always want to read local storage and update tasklist for website using local data.
-let TaskList = JSON.parse(localStorage.getItem('keyforpushData_toLocal')) || []   // if no data locally then || sets array to empty...
-TaskList.forEach(element => {
-    rendertask(element)
-});
+    addTaskButton.addEventListener("click",() => {
+        handleTaskAddition()
+    });
 
-
-
-// grab text when todoInput is pressed.
-// Assuming taskButton and todoInput are already defined
-taskButton.addEventListener('click', handleTaskAddition);
-todoInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
+    todoInput.addEventListener("keydown",(e) => {
+        if (e.key === "Enter"){
         handleTaskAddition();
+        }})
+    
+        
+
+        function handleTaskAddition(){
+            if(todoInput.value.trim() === "") {
+                return; // dont add empty stuff to takslist
+            }
+        
+        const taskData = {
+            UID: Date.now(),
+            content: todoInput.value.trim(),
+            completed: false
+        }
+        ListArray.push(taskData)
+        todoInput.value = "";
+        render(taskData)
+        pushLocal()
     }
-});
 
-function handleTaskAddition() {
-    const textGivenByUser = todoInput.value.trim();
-    if (textGivenByUser === "") return;
+    function strikethrough() {
+        ;
+    }
+    
 
-    const DataToPush_toTasklist = {
-        UID: Date.now(),
-        content: textGivenByUser,
-        TaskCompletedStatus: false,
-    };
 
-    TaskList.push(DataToPush_toTasklist);
-    todoInput.value = "";
-    pushData_toLocal();
-    rendertask(DataToPush_toTasklist);
-    console.log(TaskList);
-}
-function rendertask(datatorender){
-    const li = document.createElement('li');
-    //basically setting up some identification for this const.
-    li.setAttribute("list-UID", datatorender.UID)
-    li.innerHTML = `<span>${datatorender.content}</span>
-    <button>Delete</button>`
-    todoList.append(li)
 
-    // reverses the task completion status.
-    li.addEventListener('click', (e) => {
-        if(e.target.tagName === "BUTTON") return
-        datatorender.TaskCompletedStatus = !datatorender.TaskCompletedStatus
-        li.classList.toggle("completed") //toggling css class toggle.. which render strikethrough line...
-        pushData_toLocal()
-    })
 
-    // delete events
-    li.addEventListener('click', (e) => {
-        e.stopPropagation() // stop bubbling
-        TaskList = TaskList.filter(k => k.UID !== datatorender.UID)
-        li.remove()
-        pushData_toLocal()
-    })
-}
+    function render(arrayitem){
+        const li = document.createElement("li"); 
+        li.id = arrayitem.UID;
+        li.innerHTML = `
+        <span>${arrayitem.content}</span>
+        <button>Delete</button>
+        `;
+        todoList.appendChild(li);
+    
+        
+        //toggle
+        li.addEventListener('click',(e) => 
+        {
+            if(e.target.tagName === "SPAN"){
+                   arrayitem.completed = !arrayitem.completed;
+                   li.classList.toggle("completed");
+                   pushLocal();
+            }
+        })    
+        
+        // deletion code:
+        li.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if(e.target.tagName === "BUTTON"){
+                ListArray = ListArray.filter(k => k.UID !== arrayitem.id);
+                li.remove()
+                pushLocal();
+            }
+            
 
-    // function to push data to local storage.
-function pushData_toLocal() {
-    localStorage.setItem("keyforpushData_toLocal", JSON.stringify(TaskList));
-}
+        })
+
+
+
+
+
+        
+    }
+
+
+
+
+    function pushLocal() {
+        localStorage.setItem("localstoragekey", JSON.stringify(ListArray));
+    }
 
 
 })
