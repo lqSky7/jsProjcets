@@ -17,19 +17,16 @@ document.addEventListener('DOMContentLoaded',() => {
     addTaskButton.addEventListener("click",() => {
         handleTaskAddition()
     });
-
     todoInput.addEventListener("keydown",(e) => {
         if (e.key === "Enter"){
         handleTaskAddition();
         }})
     
-        
 
         function handleTaskAddition(){
             if(todoInput.value.trim() === "") {
                 return; // dont add empty stuff to takslist
-            }
-        
+            }    
         const taskData = {
             UID: Date.now(),
             content: todoInput.value.trim(),
@@ -50,7 +47,6 @@ document.addEventListener('DOMContentLoaded',() => {
         `;
         todoList.appendChild(li);
     
-        
         //toggle
         li.addEventListener('click',(e) => 
         {
@@ -69,19 +65,9 @@ document.addEventListener('DOMContentLoaded',() => {
                 li.remove()
                 pushLocal();
             }
-            
-
         })
-
-
-
-
-
         
     }
-
-
-
 
     function pushLocal() {
         localStorage.setItem("localstoragekey", JSON.stringify(ListArray));
