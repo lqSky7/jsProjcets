@@ -1,5 +1,5 @@
 ### PROJECT 1 DEMO
-![](https://github.com/lqSky7/jsProjects/blob/main/demos/output.mp4)
+[DEMO](https://github.com/lqSky7/jsProjects/blob/main/demos/output.mp4)
 ## Project Overview
 
 This project demonstrates a simple JavaScript application. The GIF above shows the functionality of the project in action.
