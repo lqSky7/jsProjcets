@@ -1,74 +1,327 @@
-/* styles.css */
-* {
+/* Custom properties for the updated color palette */
+:root {
+    --bg-primary: #1e1e2e;
+    --bg-secondary: #232538;
+    --accent-primary: #89dceb;
+    --accent-secondary: #b4befe;
+    --text-primary: #cdd6f4;
+    --text-secondary: #a6adc8;
+    --error-color: #f38ba8;
+  }
+  
+  /* Reset and base styles */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #FFFFFF;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+  }
+  
+  /* Body styles with static gradient background */
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: linear-gradient(
+      45deg,
+      var(--bg-primary),
+      var(--bg-secondary),
+      #2a2b3c,
+      #1e1e2e
+    );
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-.container {
-    background-color: #1E1E1E;
-    padding: 20px;
-    border-radius: 10px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  /* Background decorative elements */
+  .background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    opacity: 0.15;
+    animation: float 20s linear infinite;
+  }
+  
+  .shape:nth-child(1) {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    left: 25%;
+    animation-delay: -2s;
+    filter: blur(4px);
+  }
+  
+  .shape:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    top: 40%;
+    right: 20%;
+    animation-delay: -5s;
+    filter: blur(8px);
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  }
+  
+  .shape:nth-child(3) {
+    width: 200px;
+    height: 200px;
+    bottom: 25%;
+    left: 30%;
+    animation-delay: -7s;
+    filter: blur(6px);
+    opacity: 0.1;
+  }
+  
+  .shape:nth-child(4) {
+    width: 120px;
+    height: 120px;
+    bottom: 30%;
+    right: 25%;
+    animation-delay: -3s;
+    filter: blur(5px);
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  }
+  
+  /* Container with glassmorphism effect */
+  .container {
+    background: rgba(30, 30, 46, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 16px;
     width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.input-container {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.6s ease forwards;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Heading styles with gradient text and thinner weight */
+  h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 200;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+  
+  /* Input container with enhanced spacing */
+  .input-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Enhanced input field */
+  input[type="text"] {
     width: 70%;
-    padding: 10px;
-    background-color: #333333;
-    border: none;
-    border-radius: 5px;
-    color: #FFF;
+    padding: 0.8rem 1rem;
+    background: rgba(34, 36, 54, 0.8);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: var(--text-primary);
     outline: none;
-}
-
-button {
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(137, 220, 235, 0.2);
+  }
+  
+  /* Button with hover and active states */
+  button {
     width: 25%;
-    padding: 10px;
-    background-color: #6200EA;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     border: none;
-    border-radius: 5px;
-    color: #FFF;
+    border-radius: 8px;
+    color: #1e1e2e;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #3700B3;
-}
-
-#weather-info {
-    margin-top: 20px;
-}
-
-.hidden {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+  
+  button:hover::before {
+    left: 100%;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(137, 220, 235, 0.3);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Weather info section */
+  #weather-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(34, 36, 54, 0.6);
+    border-radius: 8px;
+    transform: scale(0.95);
+    opacity: 0;
+    animation: scaleIn 0.5s ease forwards;
+  }
+  
+  /* Error message styling */
+  #error-message {
+    color: var(--error-color);
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: rgba(243, 139, 168, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: slideDown 0.4s ease forwards;
+  }
+  
+  /* Hidden state */
+  .hidden {
     display: none;
-}
-
-#error-message {
-    color: #FF5722;
-    margin-top: 20px;
-}
+  }
+  
+  /* Animations */
+  @keyframes slideUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideDown {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(5px, 10px);
+    }
+    50% {
+      transform: translate(-5px, -5px);
+    }
+    75% {
+      transform: translate(-10px, 5px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
+  /* Loading state animation */
+  .loading {
+    position: relative;
+  }
+  
+  .loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(137, 220, 235, 0.3);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 480px) {
+    .container {
+      width: 90%;
+      margin: 1rem;
+    }
+    
+    .input-container {
+      flex-direction: column;
+    }
+    
+    input[type="text"],
+    button {
+      width: 100%;
+    }
+  }

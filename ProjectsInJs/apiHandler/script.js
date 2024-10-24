@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const temperature = document.getElementById("temperature");
     const desctext = document.getElementById("description");
     const errormsg = document.getElementById("error-message");
-    const KEY = "ENTER YOUR KEY";
+    const KEY = "";
 
 // we listen.
 clickbutton.addEventListener("click", async() => {
