@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',() => {
         //toggle
         li.addEventListener('click',(e) => 
         {
-            if(e.target.tagName === "SPAN"){
+            if(e.target.tagName != "BUTTON"){
                    arrayitem.completed = !arrayitem.completed;
                    li.classList.toggle("completed");
                    pushLocal();
