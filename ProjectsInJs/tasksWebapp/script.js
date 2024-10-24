@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded',() => {
         render(element)
     }); 
 
+    document.addEventListener('keydown', (e) => {
+        if(e.ctrlKey && e.key === 'k') { 
+            e.preventDefault();  
+            todoInput.focus(); 
+        }
+    });
+
     addTaskButton.addEventListener("click",() => {
         handleTaskAddition()
     });
@@ -33,14 +40,6 @@ document.addEventListener('DOMContentLoaded',() => {
         render(taskData)
         pushLocal()
     }
-
-    function strikethrough() {
-        ;
-    }
-    
-
-
-
 
     function render(arrayitem){
         const li = document.createElement("li"); 
