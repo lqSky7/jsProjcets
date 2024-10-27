@@ -6,7 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalpricehtml = document.getElementById("total-price")
     const checkoutbtnhtml = document.getElementById("checkout-btn")
 
-    let Kart = [];
+    let Kart = JSON.parse(localStorage.getItem("Key")) || [];
+
+    function updateDisplay(arr){
+        cartitemshtml.innerHTML = ""
+        let suma =0 
+        arr.forEach(element => {
+        const k = document.createElement("div")
+        k.innerHTML = `<span>${element.name}, ${element.price}Rs.</span>`
+        cartitemshtml.appendChild(k)
+        suma = suma + Number(element.price)
+        });
+        totalpricehtml.innerText=suma
+    }
+
+    updateDisplay(Kart);
 
     const prodlist = [
         {id: 1, name: "product 1", price: 10},
@@ -41,23 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
             prodlist.forEach(element => {
                 if(Number(ourclickedItemID) === Number(element.id)){
                     Kart.push(element);
+                    localStoragepush()
                 }
             });
     }    
     updateDisplay(Kart);
 })
 
-function updateDisplay(arr){
-    cartitemshtml.innerHTML = ""
-    let suma =0 
-    arr.forEach(element => {
-    const k = document.createElement("div")
-    k.innerHTML = `<span>${element.name}, ${element.price}Rs.</span>`
-    cartitemshtml.appendChild(k)
-    suma = suma + Number(element.price)
-    });
-    totalpricehtml.innerText=suma
-}
+
 
 })
 checkoutbtnhtml.addEventListener("click", () => {
@@ -65,5 +70,12 @@ checkoutbtnhtml.addEventListener("click", () => {
     cartitemshtml.innerHTML = ""
     totalpricehtml.innerText="0Rs."
     Kart = []
+    emptycarthtml.className= ""
+    localStoragepush()
+
 })
+
+function localStoragepush(){
+localStorage.setItem("Key", JSON.stringify(Kart))
+}
 })
