@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkoutbtnhtml = document.getElementById("checkout-btn")
 
     let Kart = JSON.parse(localStorage.getItem("Key")) || [];
-    
-
 
     function updateDisplay(arr){
         cartitemshtml.innerHTML = ""
@@ -21,17 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         totalpricehtml.innerText=suma
     }
-    
-
-
 
     if(Kart != []){
     emptycarthtml.className= "hidden"
     carttotalhtml.className = ""
     updateDisplay(Kart);}
-
-
-
 
     const prodlist = [
         {id: 1, name: "product 1", price: 10},
@@ -43,10 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     prodlist.forEach(element => {
         // steps: create some div for list inside prodlisthtml. Then we add button and some span inside that div. then we attach that div to our main html
         // note that const objects can be modified.
-
-
-
-
         const productul = document.createElement("ul")
         const product = document.createElement("li")
         product.innerHTML = `
@@ -79,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 })
 
-
 checkoutbtnhtml.addEventListener("click", () => {
     alert("Checkout successfull")
     cartitemshtml.innerHTML = ""
@@ -89,8 +76,6 @@ checkoutbtnhtml.addEventListener("click", () => {
     localStoragepush()
 
 })
-
-
 
 function rmv() {
     document.addEventListener("click", (e) => {
