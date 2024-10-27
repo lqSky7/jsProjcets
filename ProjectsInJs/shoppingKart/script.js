@@ -96,9 +96,7 @@ function rmv() {
     document.addEventListener("click", (e) => {
         const ourclickedItemID = e.target.getAttribute("id")
         if(e.target.className === "rmbutton"){
-
             console.log("test1", e.target.className);
-            
             let a = (Kart.findIndex(({ id }) => id === Number(ourclickedItemID)));
             if(a != -1){
                 console.log(a);
@@ -106,11 +104,8 @@ function rmv() {
                 localStoragepush()
                 updateDisplay(Kart);
             }
-
         }})
 }
-
-
 rmv()
 function localStoragepush(){
 localStorage.setItem("Key", JSON.stringify(Kart))
