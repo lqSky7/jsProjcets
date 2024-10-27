@@ -35,8 +35,8 @@ h2 {
 .product {
   background-color: #333333;
   padding: 10px;
+  list-style-type: none;
   margin-bottom: 10px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;

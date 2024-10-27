@@ -1,0 +1,44 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const productlisthtml = document.getElementById("product-list")
+    const cartitemshtml = document.getElementById("cart-items")
+    const emptycarthtml = document.getElementById("empty-cart")
+    const carttotalhtml = document.getElementById("cart-total")
+    const totalpricehtml = document.getElementById("total-price")
+    const checkoutbtnhtml = document.getElementById("checkout-btn")
+
+    const cartItemsArray = [];
+
+    const prodlist = [
+        {id: 1, name: "product 1", price: 10},
+        {id: 2, name: "product 2", price: 102},
+        {id: 3, name: "product 3", price: 12}
+    ]
+
+    //Inject product list into html. 
+    prodlist.forEach(element => {
+        // steps: create some div for list inside prodlisthtml. Then we add button and some span inside that div. then we attach that div to our main html
+        // note that const objects can be modified.
+        const productul = document.createElement("ul")
+        const product = document.createElement("li")
+        product.innerHTML = `
+        <span>${element.name} - ${element.price}Rs.</span>
+        <button id=${element.id}>Add to Kart</button>`
+
+        // add styling to unordered list from css.
+        productul.className = "product"
+        product.style.cssText = "display: flex; justify-content: space-between;";        productlisthtml.appendChild(productul)
+        productul.appendChild(product)
+
+
+
+        // listen to button clicks
+        const AddtoKartBtn = product.addEventListener("click", () => {
+            console.log("hi")});
+    });
+
+
+
+
+})
+
+
