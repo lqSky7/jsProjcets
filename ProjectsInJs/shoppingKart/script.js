@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const product = document.createElement("li")
         product.innerHTML = `
         <span>${element.name} - ${element.price}Rs.</span>
+        <span>⠀</span>
         <button class="buttonn" id=${element.id}>Add to Kart</button>
+        <span>⠀</span>
         <button class="rmbutton" id="${element.id}">Remove</button>`
 
 
