@@ -42,8 +42,18 @@ h2 {
   border-radius: 5px;
 }
 
-.product button {
+.product buttonn {
   background-color: #6200ea;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product rmbutton {
+  background-color: #ea005a;
   border: none;
   padding: 5px 10px;
   color: #fff;

@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkoutbtnhtml = document.getElementById("checkout-btn")
 
     let Kart = JSON.parse(localStorage.getItem("Key")) || [];
+    
+
 
     function updateDisplay(arr){
         cartitemshtml.innerHTML = ""
@@ -19,8 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         totalpricehtml.innerText=suma
     }
+    
 
-    updateDisplay(Kart);
+
+
+    if(Kart != []){
+    emptycarthtml.className= "hidden"
+    carttotalhtml.className = ""
+    updateDisplay(Kart);}
+
+
+
 
     const prodlist = [
         {id: 1, name: "product 1", price: 10},
@@ -32,11 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
     prodlist.forEach(element => {
         // steps: create some div for list inside prodlisthtml. Then we add button and some span inside that div. then we attach that div to our main html
         // note that const objects can be modified.
+
+
+
+
         const productul = document.createElement("ul")
         const product = document.createElement("li")
         product.innerHTML = `
         <span>${element.name} - ${element.price}Rs.</span>
-        <button id=${element.id}>Add to Kart</button>`
+        <button class="buttonn" id=${element.id}>Add to Kart</button>
+        <button class="rmbutton" id="${element.id}">Remove</button>`
+
 
         // add styling to unordered list from css.
         productul.className = "product"
@@ -46,8 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // listen to button clicks
         const AddtoKartBtn = product.addEventListener("click", (e) => {
-           if(e.target.tagName === "BUTTON"){
-            
+           if(e.target.className === "buttonn"){      
             emptycarthtml.className= "hidden"
             carttotalhtml.className = ""
             const ourclickedItemID = e.target.getAttribute("id")
@@ -61,10 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }    
     updateDisplay(Kart);
 })
-
-
-
 })
+
+
 checkoutbtnhtml.addEventListener("click", () => {
     alert("Checkout successfull")
     cartitemshtml.innerHTML = ""
@@ -75,6 +90,28 @@ checkoutbtnhtml.addEventListener("click", () => {
 
 })
 
+
+
+function rmv() {
+    document.addEventListener("click", (e) => {
+        const ourclickedItemID = e.target.getAttribute("id")
+        if(e.target.className === "rmbutton"){
+
+            console.log("test1", e.target.className);
+            
+            let a = (Kart.findIndex(({ id }) => id === Number(ourclickedItemID)));
+            if(a != -1){
+                console.log(a);
+                Kart.splice(a,1)
+                localStoragepush()
+                updateDisplay(Kart);
+            }
+
+        }})
+}
+
+
+rmv()
 function localStoragepush(){
 localStorage.setItem("Key", JSON.stringify(Kart))
 }
