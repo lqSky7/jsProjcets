@@ -62,5 +62,8 @@ function updateDisplay(arr){
 })
 checkoutbtnhtml.addEventListener("click", () => {
     alert("Checkout successfull")
+    cartitemshtml.innerHTML = ""
+    totalpricehtml.innerText="0Rs."
+    Kart = []
 })
 })
