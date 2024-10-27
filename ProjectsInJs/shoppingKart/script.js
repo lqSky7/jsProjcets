@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalpricehtml = document.getElementById("total-price")
     const checkoutbtnhtml = document.getElementById("checkout-btn")
 
-    const Kart = [];
+    let Kart = [];
 
     const prodlist = [
         {id: 1, name: "product 1", price: 10},
@@ -48,15 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function updateDisplay(arr){
+    cartitemshtml.innerHTML = ""
+    let suma =0 
     arr.forEach(element => {
     const k = document.createElement("div")
-    k.innerHTML = `<span>${element.name}, ${element.price}</span>`
+    k.innerHTML = `<span>${element.name}, ${element.price}Rs.</span>`
     cartitemshtml.appendChild(k)
+    suma = suma + Number(element.price)
     });
+    totalpricehtml.innerText=suma
 }
 
-
-
 })
-
+checkoutbtnhtml.addEventListener("click", () => {
+    alert("Checkout successfull")
+})
 })
