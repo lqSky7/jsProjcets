@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalpricehtml = document.getElementById("total-price")
     const checkoutbtnhtml = document.getElementById("checkout-btn")
 
-    const cartItemsArray = [];
+    const Kart = [];
 
     const prodlist = [
         {id: 1, name: "product 1", price: 10},
@@ -30,15 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
         productul.appendChild(product)
 
 
-
         // listen to button clicks
-        const AddtoKartBtn = product.addEventListener("click", () => {
-            console.log("hi")});
-    });
+        const AddtoKartBtn = product.addEventListener("click", (e) => {
+           if(e.target.tagName === "BUTTON"){
+            
+            emptycarthtml.className= "hidden"
+            carttotalhtml.className = ""
+            const ourclickedItemID = e.target.getAttribute("id")
+            // console.log(ourclickedItemID);
+            prodlist.forEach(element => {
+                if(Number(ourclickedItemID) === Number(element.id)){
+                    Kart.push(element);
+                }
+            });
+    }    
+    updateDisplay(Kart);
+})
 
+function updateDisplay(arr){
+    arr.forEach(element => {
+    const k = document.createElement("div")
+    k.innerHTML = `<span>${element.name}, ${element.price}</span>`
+    cartitemshtml.appendChild(k)
+    });
+}
 
 
 
 })
 
-
+})
