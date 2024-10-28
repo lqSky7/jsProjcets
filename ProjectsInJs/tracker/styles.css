@@ -1,0 +1,240 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Animated gradient background */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    -45deg,
+    #000000,
+    #070814,
+    #A587DE,
+    #0C0E25,
+    #000000
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Container with glass effect */
+.container {
+  width: 400px;
+  padding: 20px;
+  background-color: rgba(30, 30, 30, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: containerFade 0.5s ease-in;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: slideDown 0.5s ease-out;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  animation: slideUp 0.5s ease-out;
+}
+
+input[type="text"], input[type="number"] {
+  width: 45%;
+  padding: 10px;
+  background-color: #333333;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  margin: 3px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  padding: 10px;
+  background-color: #6200ea;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #3700b3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#expense-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#expense-list li {
+  background-color: #333333;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  animation: slideIn 0.3s ease-out;
+  transition: transform 0.2s;
+}
+
+#expense-list li:hover {
+  transform: translateX(5px);
+}
+
+#total {
+  text-align: right;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+button.delbtn {
+  padding: 5px 10px;
+  background-color: #d32f2f;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button.delbtn:hover {
+  background-color: #b71c1c;
+  transform: translateY(-2px);
+}
+
+/* Floating shapes in background */
+.shape {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(165, 135, 222, 0.1);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: float 10s infinite;
+}
+
+.shape:nth-child(2) {
+  width: 70px;
+  height: 70px;
+  animation-delay: -2s;
+  animation-duration: 13s;
+}
+
+.shape:nth-child(3) {
+  width: 90px;
+  height: 90px;
+  animation-delay: -5s;
+  animation-duration: 16s;
+}
+
+/* Animations */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-100%) translateX(-100%);
+  }
+  25% {
+    transform: translateY(100%) translateX(100%);
+  }
+  50% {
+    transform: translateY(100%) translateX(-100%);
+  }
+  75% {
+    transform: translateY(-100%) translateX(100%);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes containerFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
