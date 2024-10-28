@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Projects Portfolio</title>
+    <style>
+        /* Base reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Animated gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                -45deg,
+                #000000,
+                #070814,
+                #A587DE,
+                #0C0E25,
+                #000000
+            );
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 2rem;
+        }
+
+        /* Floating shapes in background */
+        .shape {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(165, 135, 222, 0.1);
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: float 10s infinite;
+            z-index: 0;
+        }
+
+        .shape:nth-child(2) {
+            width: 70px;
+            height: 70px;
+            animation-delay: -2s;
+            animation-duration: 13s;
+        }
+
+        .shape:nth-child(3) {
+            width: 90px;
+            height: 90px;
+            animation-delay: -5s;
+            animation-duration: 16s;
+        }
+
+        /* Container with glass effect */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 30px;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: containerFade 0.5s ease-in;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .header h1 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .header p {
+            color: #A587DE;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .project-btn {
+            padding: 10px 20px;
+            background-color: #6200ea;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .project-btn:hover {
+            background-color: #3700b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-btn:active {
+            transform: translateY(0);
+        }
+
+        .project-btn.active {
+            background-color: #3700b3;
+            box-shadow: 0 0 0 3px rgba(165, 135, 222, 0.3);
+        }
+
+        .project-display {
+            background-color: #333333;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 0;
+            transition: height 0.3s ease;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .project-display.active {
+            height: 600px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 2rem;
+            color: #A587DE;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Animations */
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-100%) translateX(-100%);
+            }
+            25% {
+                transform: translateY(100%) translateX(100%);
+            }
+            50% {
+                transform: translateY(100%) translateX(-100%);
+            }
+            75% {
+                transform: translateY(-100%) translateX(100%);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes containerFade {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>JavaScript Projects Portfolio</h1>
+            <p>Select a project to view</p>
+        </div>
+        
+        <div class="buttons">
+            <button class="project-btn" data-project="apiHandler">API Handler</button>
+            <button class="project-btn" data-project="shoppingKart">Shopping Cart</button>
+            <button class="project-btn" data-project="tasksWebapp">Tasks Web App</button>
+            <button class="project-btn" data-project="tracker">Tracker</button>
+        </div>
+
+        <div class="project-display">
+            <div class="welcome-message">
+                Click on any project button above to load the project
+            </div>
+            <iframe id="projectFrame" title="Project Display"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const projectDisplay = document.querySelector('.project-display');
+        const projectFrame = document.getElementById('projectFrame');
+        const buttons = document.querySelectorAll('.project-btn');
+        const welcomeMessage = document.querySelector('.welcome-message');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button state
+                buttons.forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+
+                // Hide welcome message and show iframe
+                welcomeMessage.style.display = 'none';
+                projectFrame.style.display = 'block';
+                
+                // Load the project
+                const projectName = button.dataset.project;
+                projectFrame.src = `ProjectsInJs/${projectName}/index.html`;
+                
+                // Show the display container with animation
+                projectDisplay.classList.add('active');
+            });
+        });
+
+        // Handle iframe load events
+        projectFrame.addEventListener('load', () => {
+            // Ensure the iframe is visible and sized correctly
+            projectDisplay.classList.add('active');
+        });
+    </script>
+</body>
+</html>
