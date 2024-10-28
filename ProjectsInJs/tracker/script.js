@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", () =>
 
     expFormHtml.addEventListener("click", (e) => {
         e.preventDefault() 
-        if(e.target.tagName == "BUTTON"){
-
+        if(e.target.tagName == "BUTTON"){           
+            if(expenseName.value == "" || expenseAmount.value == ""){
+                return;
+            }
             
         const item = {
             name: expenseName.value,
