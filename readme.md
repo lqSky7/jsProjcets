@@ -53,7 +53,7 @@ Your data stays with you! All applications utilize local storage for:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/javascript-projects.git
+git clone https://github.com/lqSky7/jsProjects
 ```
 
 2. Navigate to project directory:
