@@ -6,41 +6,28 @@ const readfile = () => {
     try {
         const bufferJSON = fs.readFileSync(path)                                                                 // this returns something called bufferJSON which is binary data. Usually files are read this way to avoid errors.
         const dataJSON = bufferJSON.toString()
-        return [bufferJSON, dataJSON, JSON.stringify(dataJSON)] 
+        return JSON.parse(dataJSON)
     } catch (error) {
+        console.log("hi", error);
         return []
     }
 
 }
 
-
+// const command = process.argv[2]
+const argument = process.argv[2]
 
 const savetask = (task) => {
         const towrite = JSON.stringify(task)
-        fs.writeFileSync(filepath, towrite)
+        fs.writeFileSync(path, towrite)
     };
     
-    const Addtask = (arg) => {
+
+
+const Addtask = (arg) => {
+    const filcontent = readfile()
+    filcontent.push( {arg} ) // if u push wo {} it pushed direcly as buffer always push as object
+    savetask(filcontent)
+}
     
-    }
-    
-    
-    
-    
-    
-    
-    const command = process.argv[2]
-    const argument = process.argv[3]
-    
-    if(command === "add"){
-        Addtask(argument)
-    }
-    
-    if(command === "removetask"){
-        rmtask(argument)
-    }
-    
-    if(command === list){
-        listtask()
-    }
-    
+Addtask(argument)
