@@ -1,3 +1,4 @@
+const { log } = require("console")
 const fs = require("fs")
 const path = "./tks.json"
 
@@ -30,4 +31,15 @@ const Addtask = (arg) => {
     savetask(filcontent)
 }
     
+
+const Listtasks = () => {
+    const filecontent = readfile()
+    filecontent.forEach((element,idx) => {
+        console.log(idx+1, element.arg);
+        
+    });
+}
+
+
 Addtask(argument)
+Listtasks()
